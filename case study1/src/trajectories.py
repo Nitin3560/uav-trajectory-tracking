@@ -1,0 +1,73 @@
+from __future__ import annotations
+from typing import Any, Dict, Tuple
+import numpy as np
+
+
+def formation_offsets(cfg: Dict[str, Any], n: int) -> np.ndarray:
+    f = cfg.get("formation", None)
+    if f is None:
+        spacing = float((cfg.get("formation", {}) or {}).get("spacing_m", 0.6))
+        f = {"type": "square" if n == 4 else "line", "spacing_m": spacing}
+
+    spacing = float(f.get("spacing_m", 0.6))
+    ftype = str(f.get("type", "line")).lower()
+
+    if ftype == "square" and n == 4:
+        return np.array([
+            [-spacing/2, -spacing/2, 0.0],
+            [-spacing/2, +spacing/2, 0.0],
+            [+spacing/2, -spacing/2, 0.0],
+            [+spacing/2, +spacing/2, 0.0],
+        ], dtype=float)
+
+    offs = np.zeros((n, 3), dtype=float)
+    for i in range(n):
+        offs[i] = np.array([(i - (n - 1) / 2) * spacing, 0.0, 0.0], dtype=float)
+    return offs
+
+
+def p_ref(cfg: Dict[str, Any], t: float) -> Tuple[np.ndarray, np.ndarray]:
+    tr = cfg["trajectory"]
+    typ = str(tr["type"]).lower()
+    R = float(tr["radius_m"])
+    z = float(tr["altitude_m"])
+    T = float(tr["period_s"])
+    cx, cy = tr["center_xy"]
+    w = 2.0 * np.pi / T
+
+    if typ == "circle":
+        x = cx + R * np.cos(w * t)
+        y = cy + R * np.sin(w * t)
+        vx = -R * w * np.sin(w * t)
+        vy = +R * w * np.cos(w * t)
+        return np.array([x, y, z], dtype=float), np.array([vx, vy, 0.0], dtype=float)
+
+    if typ == "lemniscate":
+        x = cx + R * np.sin(w * t)
+        y = cy + R * np.sin(w * t) * np.cos(w * t)
+        vx = R * w * np.cos(w * t)
+        vy = R * w * (np.cos(2 * w * t))
+        return np.array([x, y, z], dtype=float), np.array([vx, vy, 0.0], dtype=float)
+
+    if typ == "lawnmower":
+        L = 2 * R
+        leg_T = T / 4
+        speed = L / leg_T
+        t_wrap = t % T
+        phase = t_wrap / T
+        lane = int(phase * 4)
+        if lane > 3:
+            lane = 3
+        # Use a continuous serpentine reference so the returned velocity matches
+        # the trajectory instead of introducing a discontinuous lane jump in y.
+        y = cy - R + (2.0 * R / T) * t_wrap
+        vy = 2.0 * R / T
+        if lane % 2 == 0:
+            x = cx - R + speed * (t_wrap % leg_T)
+            vx = speed
+        else:
+            x = cx + R - speed * (t_wrap % leg_T)
+            vx = -speed
+        return np.array([x, y, z], dtype=float), np.array([vx, vy, 0.0], dtype=float)
+
+    raise ValueError(f"Unknown trajectory type: {typ}")
