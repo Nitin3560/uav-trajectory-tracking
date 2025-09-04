@@ -1,0 +1,70 @@
+sim:
+  drone_model: "cf2x"
+  physics: "pyb"
+  gui: false
+  freq_hz: 240
+  ctrl_hz: 48
+  duration_s: 40
+  num_drones: 4
+  seed: 1
+  debug_obs: false
+
+trajectory:
+  type: "circle"
+  radius_m: 5.0
+  period_s: 25.0
+  altitude_m: 2.0
+  center_xy: [0.0, 0.0]
+
+formation:
+  type: "square"
+  spacing_m: 2.0
+
+disturbance:
+  wind:
+    mode: "gust"
+    constant_force_n: [0.08, 0.0, 0.0]
+    gust_force_n_max: 0.20
+    gust_interval_s: [2.0, 5.0]
+    gust_duration_s: [0.3, 0.8]
+  gps_drift:
+    enabled: true
+    random_walk_std_m_per_s: 0.08
+    noise_std_m: 0.05
+    outage:
+      enabled: false
+
+metrics:
+  steady_state_after_s: 10.0
+
+controllers:
+  openloop:
+    waypoint_dt_s: 1.0
+    v_max: 3.0
+    kp_xy: 0.0
+
+  agentic:
+    lookahead_alpha: 0.7
+    lookahead_s: 0.0
+
+    ki: 0.008
+    int_clamp: 2.0
+    pos_corr_max_m: 2.0
+    int_leak: 0.995
+    int_gate_v_mps: 3.0
+
+    quiet_err_m: 0.6
+    act_err_m: 1.2
+    hold_s: 0.8
+    min_improve_mps: 0.05
+    err_ema_beta: 0.05
+  pid:
+    ki: 0.02          # increase integral sensitivity (optional but often needed)
+    int_clamp: 9999.0 # effectively no clamp
+    int_leak: 1.0     # no leak
+    int_gate_v_mps: 9999.0  # no gating
+
+  sensing:
+    openloop: "gps"
+    pid: "gps"
+    agentic: "gps"
