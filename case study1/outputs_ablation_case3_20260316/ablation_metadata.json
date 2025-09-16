@@ -1,0 +1,17 @@
+{
+  "base_config": "/Users/nitin/Desktop/case_study_1_tracking/configs/scenario_faults_comm.yaml",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "variants": [
+    "PID",
+    "PID + Ref Shift",
+    "PID + Comm Bias",
+    "PID + Formation Scaling",
+    "PID + Full Agentic"
+  ]
+}
