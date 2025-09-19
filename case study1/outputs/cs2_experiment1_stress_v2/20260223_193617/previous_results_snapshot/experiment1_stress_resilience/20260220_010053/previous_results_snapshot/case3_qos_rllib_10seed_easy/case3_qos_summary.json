@@ -1,0 +1,70 @@
+{
+  "static": {
+    "mean_latency_ms": {
+      "mean": 929.5568774485062,
+      "std": 133.70719169018975
+    },
+    "effective_latency_ms": {
+      "mean": 71718.0306321707,
+      "std": 66845.67684199703
+    },
+    "p95_latency_ms": {
+      "mean": 1000.0,
+      "std": 0.0
+    },
+    "throughput_bps": {
+      "mean": 782.6666666666667,
+      "std": 391.4213416085877
+    },
+    "throughput_std_over_time": {
+      "mean": 1487.958798964994,
+      "std": 414.97088428572255
+    },
+    "throughput_cv_over_time": {
+      "mean": 2.703959003012252,
+      "std": 1.8567456192135143
+    },
+    "delivery_rate_pct": {
+      "mean": 76.32836925073781,
+      "std": 22.347650075738642
+    },
+    "packet_loss_pct": {
+      "mean": 23.671630749262192,
+      "std": 22.347650075738642
+    }
+  },
+  "marl_ctde": {
+    "mean_latency_ms": {
+      "mean": 832.2505923599876,
+      "std": 466.0126766312512
+    },
+    "effective_latency_ms": {
+      "mean": 5380.818498601364,
+      "std": 3701.055261049379
+    },
+    "p95_latency_ms": {
+      "mean": 3000.0,
+      "std": 2932.575659723036
+    },
+    "throughput_bps": {
+      "mean": 12502.933333333334,
+      "std": 2538.303951679371
+    },
+    "throughput_std_over_time": {
+      "mean": 6836.658900418259,
+      "std": 1254.540894953039
+    },
+    "throughput_cv_over_time": {
+      "mean": 0.5649193785596766,
+      "std": 0.12520304361439655
+    },
+    "delivery_rate_pct": {
+      "mean": 98.47859486957414,
+      "std": 1.1447280207108719
+    },
+    "packet_loss_pct": {
+      "mean": 1.521405130425866,
+      "std": 1.1447280207108719
+    }
+  }
+}
