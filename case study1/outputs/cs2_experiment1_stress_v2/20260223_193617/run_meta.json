@@ -1,0 +1,55 @@
+{
+  "out_dir": "/Users/nitin/Desktop/case_study_1_tracking/outputs/cs2_experiment1_stress_v2/20260223_193617",
+  "raw_csv": "/Users/nitin/Desktop/case_study_1_tracking/outputs/cs2_experiment1_stress_v2/20260223_193617/stress_results.csv",
+  "minimal_csv": "/Users/nitin/Desktop/case_study_1_tracking/outputs/cs2_experiment1_stress_v2/20260223_193617/stress_results_minimal.csv",
+  "aggregate_csv": "/Users/nitin/Desktop/case_study_1_tracking/outputs/cs2_experiment1_stress_v2/20260223_193617/stress_results_aggregate.csv",
+  "significance_json": "/Users/nitin/Desktop/case_study_1_tracking/outputs/cs2_experiment1_stress_v2/20260223_193617/stress_significance_S2.json",
+  "figure": "/Users/nitin/Desktop/case_study_1_tracking/outputs/cs2_experiment1_stress_v2/20260223_193617/fig_stress.png",
+  "figure_curve": "/Users/nitin/Desktop/case_study_1_tracking/outputs/cs2_experiment1_stress_v2/20260223_193617/fig_stress_curve.png",
+  "stress_points": {
+    "S0": {
+      "alpha": 1.0,
+      "range_scale": 1.0,
+      "buffer_scale": 1.0,
+      "seeds": [
+        1,
+        2,
+        3
+      ]
+    },
+    "S1": {
+      "alpha": 2.0,
+      "range_scale": 0.75,
+      "buffer_scale": 1.0,
+      "seeds": [
+        1,
+        2,
+        3
+      ]
+    },
+    "S2": {
+      "alpha": 3.0,
+      "range_scale": 0.5,
+      "buffer_scale": 0.5,
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  },
+  "methods": [
+    "static",
+    "fixed_relay",
+    "greedy",
+    "mappo_full"
+  ],
+  "notes": "Dynamic comm degradation applied as stress window via FaultInjector; load and buffer via config."
+}
