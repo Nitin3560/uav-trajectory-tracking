@@ -1,0 +1,13 @@
+N,method,coord_bytes_total,overhead_pct
+5,Centralized,192000,1.28
+5,AgenticLocal,57600,0.384
+10,Centralized,384000,2.56
+10,AgenticLocal,115200,0.768
+15,Centralized,576000,3.84
+15,AgenticLocal,172800,1.1520000000000001
+20,Centralized,768000,5.12
+20,AgenticLocal,230400,1.536
+25,Centralized,960000,6.4
+25,AgenticLocal,288000,1.92
+30,Centralized,1152000,7.68
+30,AgenticLocal,345600,2.3040000000000003

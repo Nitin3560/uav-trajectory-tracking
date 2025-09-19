@@ -1,0 +1,29 @@
+{
+  "out_dir": "/Users/nitin/Desktop/case_study_1_tracking/outputs/experiment2_scalability_overhead/20260223_191945",
+  "csv": "/Users/nitin/Desktop/case_study_1_tracking/outputs/experiment2_scalability_overhead/20260223_191945/scalability_overhead.csv",
+  "figure": "/Users/nitin/Desktop/case_study_1_tracking/outputs/experiment2_scalability_overhead/20260223_191945/fig_scalability.png",
+  "config": {
+    "swarm_sizes": [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30
+    ],
+    "duration_s": 120.0,
+    "ctrl_period_s": 0.5,
+    "phy_capacity_bps": 1000000.0,
+    "traffic_load_per_uav_bps": 50000.0,
+    "mobility_model": "lawnmower_constant_speed",
+    "central_state_uplink_bytes_per_uav": 96,
+    "central_decision_downlink_bytes_per_uav": 64,
+    "agentic_k_neighbors": 3,
+    "agentic_neighbor_msg_bytes": 16
+  },
+  "notes": [
+    "Centralized model counts per-period uplink state reports from all UAVs plus downlink coordination decisions from a central node.",
+    "AgenticLocal model counts bounded-size neighbor exchanges with fixed K-nearest coordination (K constant across N).",
+    "Overhead normalized by nominal PHY capacity and run duration: 8*coord_bytes_total/(C*T)*100."
+  ]
+}
