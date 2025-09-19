@@ -1,0 +1,14 @@
+{
+  "Agentic_vs_Static_S2": {
+    "n": 10,
+    "p_delivery_greater": 0.0009765625,
+    "p_undelivered_less": 0.0009765625,
+    "p_throughput_greater": 0.0009765625
+  },
+  "Agentic_vs_Greedy_S2": {
+    "n": 10,
+    "p_delivery_greater": 1.0,
+    "p_undelivered_less": 1.0,
+    "p_throughput_greater": 1.0
+  }
+}
