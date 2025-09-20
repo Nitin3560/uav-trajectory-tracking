@@ -1,0 +1,190 @@
+{
+  "timestamp": "2026-03-16T01:08:43.335846",
+  "git_hash": "0925f1c10b142cd7e222268e3c55fddb70e7eb9e",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "cases": {
+    "case_study_1": {
+      "config": "/Users/nitin/Desktop/case_study_1_tracking/configs/scenario_case_study1.yaml",
+      "num_drones": 4,
+      "duration_s": 55.0,
+      "sim_freq_hz": 240,
+      "ctrl_freq_hz": 48,
+      "trajectory_type": "circle",
+      "sensor_modes": {
+        "openloop": "gps",
+        "pid": "gps",
+        "agentic": "gps"
+      },
+      "comm_range_m": 10.0,
+      "faults": {},
+      "disturbance": {
+        "wind": {
+          "mode": "phased",
+          "phases": [
+            {
+              "t0_s": 0.0,
+              "t1_s": 15.0,
+              "constant_force_n": [
+                0.05,
+                0.0,
+                0.0
+              ],
+              "gust_force_n_max": 0.09,
+              "gust_interval_s": [
+                0.8,
+                1.6
+              ],
+              "gust_duration_s": [
+                0.4,
+                0.8
+              ]
+            },
+            {
+              "t0_s": 15.0,
+              "t1_s": 40.0,
+              "constant_force_n": [
+                0.08,
+                0.0,
+                0.0
+              ],
+              "gust_force_n_max": 0.14,
+              "gust_interval_s": [
+                0.8,
+                1.8
+              ],
+              "gust_duration_s": [
+                0.6,
+                1.2
+              ]
+            },
+            {
+              "t0_s": 40.0,
+              "t1_s": 55.0,
+              "constant_force_n": [
+                0.06,
+                0.0,
+                0.0
+              ],
+              "gust_force_n_max": 0.11,
+              "gust_interval_s": [
+                1.6,
+                3.0
+              ],
+              "gust_duration_s": [
+                0.5,
+                1.1
+              ]
+            }
+          ]
+        },
+        "gps_drift": {
+          "enabled": true,
+          "random_walk_std_m_per_s": 0.02,
+          "noise_std_m": 0.04
+        }
+      }
+    },
+    "case_study_3": {
+      "config": "/Users/nitin/Desktop/case_study_1_tracking/configs/scenario_faults_comm.yaml",
+      "num_drones": 4,
+      "duration_s": 60.0,
+      "sim_freq_hz": 240,
+      "ctrl_freq_hz": 48,
+      "trajectory_type": "circle",
+      "sensor_modes": {
+        "openloop": "gps",
+        "pid": "gps",
+        "agentic": "gps"
+      },
+      "comm_range_m": 10.0,
+      "faults": {
+        "enabled": true,
+        "events": [
+          {
+            "type": "comm_degrade",
+            "t0_s": 30.0,
+            "t1_s": 45.0,
+            "comm_range_scale": 0.6
+          }
+        ]
+      },
+      "disturbance": {
+        "wind": {
+          "mode": "phased",
+          "phases": [
+            {
+              "t0_s": 0.0,
+              "t1_s": 20.0,
+              "constant_force_n": [
+                0.06,
+                0.0,
+                0.0
+              ],
+              "gust_force_n_max": 0.1,
+              "gust_interval_s": [
+                0.7,
+                1.5
+              ],
+              "gust_duration_s": [
+                0.4,
+                0.8
+              ]
+            },
+            {
+              "t0_s": 20.0,
+              "t1_s": 45.0,
+              "constant_force_n": [
+                0.09,
+                0.0,
+                0.0
+              ],
+              "gust_force_n_max": 0.16,
+              "gust_interval_s": [
+                0.9,
+                2.0
+              ],
+              "gust_duration_s": [
+                0.6,
+                1.2
+              ]
+            },
+            {
+              "t0_s": 45.0,
+              "t1_s": 60.0,
+              "constant_force_n": [
+                0.07,
+                0.0,
+                0.0
+              ],
+              "gust_force_n_max": 0.12,
+              "gust_interval_s": [
+                1.4,
+                2.8
+              ],
+              "gust_duration_s": [
+                0.5,
+                1.1
+              ]
+            }
+          ]
+        },
+        "gps_drift": {
+          "enabled": true,
+          "random_walk_std_m_per_s": 0.02,
+          "noise_std_m": 0.04
+        }
+      }
+    }
+  }
+}

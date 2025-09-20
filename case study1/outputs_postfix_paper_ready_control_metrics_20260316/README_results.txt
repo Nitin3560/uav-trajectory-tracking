@@ -1,0 +1,14 @@
+Results package layout
+- experiment_summary.txt: human-readable run summary.
+- experiment_setup.json: exact scenario/setup metadata.
+- controller_parameters.csv: PID and agentic parameter dump from configs.
+- paper_stats_summary.csv: long-format statistics with mean/std/min/max.
+- paper_stats_wide_case1.csv / paper_stats_wide_case3.csv: wide-format paper tables.
+- paper_improvements.csv: Agentic-vs-baseline percentage improvements.
+- paper_fault_phase_summary.csv: pre/fault/post summary for Case Study 3.
+- paper_metric_definitions.txt: formulas and caveats for reported metrics.
+- paper_math_mapping.txt: math-to-code mapping for methods section.
+- paper_key_findings.txt: concise results-section findings.
+- paper_red_flags.txt: metrics/assumptions that should not be over-emphasized.
+- plots/: publication-useful plots.
+- case_study_1/ and case_study_3/: raw per-seed CSVs, summaries, figures, and metadata snapshots.
