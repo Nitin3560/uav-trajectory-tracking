@@ -1,0 +1,4 @@
+latency_proxy is not publication-safe because it evaluates to inf in these runs.
+recovery_time_s remains non-discriminative under the current threshold/hold definition and should not be a headline metric.
+task_completion_proxy is near-zero in both case studies and is better treated as a supplementary metric only.
+Overshoot and settling time are not emphasized because the reference is continuously moving, making classical step-response interpretations weak.

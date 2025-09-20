@@ -1,0 +1,8 @@
+case_study_1 old-vs-new key deltas:
+- openloop: mean_err delta=+0.000 m, connectivity delta=+0.0000
+- pid: mean_err delta=+0.000 m, connectivity delta=+0.0000
+- agentic: mean_err delta=+0.000 m, connectivity delta=+0.0000
+case_study_3 old-vs-new key deltas:
+- openloop: mean_err delta=-0.000 m, connectivity delta=+0.0000
+- pid: mean_err delta=+0.000 m, connectivity delta=+0.0000
+- agentic: mean_err delta=+0.944 m, connectivity delta=-0.0743
