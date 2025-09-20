@@ -1,0 +1,36 @@
+Math-to-code mapping
+
+System state and measurements
+- Simulation state slices are used directly from observation vectors in /Users/nitin/Desktop/case_study_1_tracking/src/run_one.py.
+  Position: obs[i][0:3]
+  Orientation quaternion: obs[i][3:7]
+  Velocity: obs[i][10:13]
+  Angular velocity: obs[i][13:16]
+- GPS-style measurement corruption is applied in /Users/nitin/Desktop/case_study_1_tracking/src/disturbances.py and /Users/nitin/Desktop/case_study_1_tracking/src/run_one.py.
+  Measurement model: y_t = x_t + b_t + n_t, where b_t is random-walk drift and n_t is Gaussian noise.
+
+Tracking references
+- Reference trajectory is produced by /Users/nitin/Desktop/case_study_1_tracking/src/trajectories.py via p_ref(cfg, t).
+- Drone-specific desired positions are p_des_i(t) = p_ref(t) + formation_offset_i.
+
+PID tracking law
+- Implemented by /Users/nitin/Desktop/case_study_1_tracking/src/controllers/pid.py and /Users/nitin/Desktop/case_study_1_tracking/src/control_core/pid_core.py.
+- Position error: e_p(t) = p_cmd(t) - p(t).
+- Velocity error is handled through velocity-based derivative mode with filtered velocity feedback when d_mode=vel.
+- Conceptual law: u_pid ~ Kp e_p + Ki integral(e_p) - Kd v_filtered, with clamping, integrator gating, leak, and saturation-aware hold/leak options.
+
+Agentic supervisory augmentation
+- Implemented in /Users/nitin/Desktop/case_study_1_tracking/src/controllers/pid_agentic.py and /Users/nitin/Desktop/case_study_1_tracking/src/controllers/agentic_supervisor.py.
+- The fast controller remains PID. Agentic logic adapts references and supervisory parameters:
+  p_cmd(t) = p_ref_now(t) + ref_shift(t) + formation_scale(t) * offset_i + comm_bias(t).
+- Reference shift is bounded by max_ref_shift_m and rate-limited by supervisor parameters.
+- Authority scaling is gated in /Users/nitin/Desktop/case_study_1_tracking/src/run_one.py using trusted-agent fraction and connectivity.
+- Integrator hold/leak overrides are applied only to the agentic PID path.
+
+Disturbance and fault model
+- Wind disturbance is applied in /Users/nitin/Desktop/case_study_1_tracking/src/disturbances.py as phased constant force plus random gusts.
+- Generic dynamics interpretation: x_{t+1} = f(x_t, u_t) + w_t.
+- Case Study 3 communication degradation is defined in /Users/nitin/Desktop/case_study_1_tracking/configs/scenario_faults_comm.yaml and injected by /Users/nitin/Desktop/case_study_1_tracking/src/faults/fault_injector.py via comm_range_eff(t) = comm_range * comm_scale(t).
+
+Control metrics
+- Control effort and smoothness are both computed from the applied motor RPM vector in /Users/nitin/Desktop/case_study_1_tracking/src/run_one.py.

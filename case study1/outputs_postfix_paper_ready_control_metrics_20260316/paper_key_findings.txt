@@ -1,0 +1,3 @@
+Case Study 1 nominal tracking: PID has the lowest mean tracking error (29.978 m), while Agentic remains close on connectivity and network proxies but does not beat PID on nominal error.
+Case Study 3 disturbance robustness: Agentic achieves the lowest mean tracking error (35.955 m) and the lowest post-vs-pre error degradation (40.26%).
+Control smoothness and control effort are now reported from applied motor-RPM commands, enabling direct discussion of whether robustness gains come with higher actuation cost or choppier control.

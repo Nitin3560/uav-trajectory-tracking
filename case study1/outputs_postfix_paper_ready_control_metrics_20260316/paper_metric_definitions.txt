@@ -1,0 +1,29 @@
+Reported metric definitions
+
+Tracking metrics
+- mean_tracking_error_m: per-seed mean of the logged swarm mean nominal XY tracking error `mean_err_m`.
+- max_tracking_error_m: per-seed maximum of the logged swarm max nominal XY tracking error `max_err_m`.
+- rmse_m: sqrt(mean(mean_err_m^2)) over logged control ticks in a seed.
+- steady_state_error_m: mean(mean_err_m) over samples with t >= steady_state_after_s from the scenario config.
+- formation_error_rel: mean of `formation_err_rel` over a seed.
+- connectivity_rate: mean of `connectivity_rate` over a seed.
+
+Control metrics
+- control_effort: mean over control ticks of the per-tick mean squared norm of the applied motor-RPM vector across alive UAVs.
+  Formula implemented in code: control_effort(t) = mean_i ||rpm_i(t)||_2^2.
+  Episode summary: E_u = mean_t control_effort(t).
+- control_smoothness: mean over control ticks of the per-tick mean step-to-step change norm of the applied motor-RPM vector across alive UAVs.
+  Formula implemented in code: smoothness(t) = mean_i ||rpm_i(t) - rpm_i(t-1)||_2.
+  Episode summary: S = mean_t smoothness(t), with the first control tick omitted via NaN.
+
+Fault metrics (Case Study 3)
+- pre_fault_error_m / fault_window_error_m / post_fault_error_m: mean tracking error over [t0-5,t0), [t0,t0+5), and [t0+5,t0+15).
+- peak_fault_error_m: max(max_err_m) over [t0,t0+5).
+- connectivity_pre / fault / post: mean connectivity over the same windows.
+- post_vs_pre_error_degradation_pct: ((post - pre) / pre) * 100.
+- connectivity_retention_pct: (connectivity_post / connectivity_pre) * 100.
+
+Publication caveats
+- latency_proxy is excluded from paper tables because existing runs produce inf values.
+- recovery_time_s is excluded from the main quantitative claims because the current definition is not discriminative for these runs.
+- task_completion_proxy is retained only as a supplementary metric because values are near-zero in both case studies.
