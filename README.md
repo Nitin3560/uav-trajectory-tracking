@@ -1,18 +1,8 @@
-# Case Study 1 — Precision Trajectory Tracking (PyBullet-Drones)
+# UAV Precision Trajectory Tracking
 
-## Install
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+Controller comparison study for single and multi-UAV trajectory tracking under fault conditions, built on PyBullet-Drones.
 
-## Run one seed
-python -m src.run_one --config configs/scenario_default.yaml --controller openloop
-python -m src.run_one --config configs/scenario_default.yaml --controller pid
-python -m src.run_one --config configs/scenario_default.yaml --controller agentic
+The experiment compares three controllers — open-loop, PID, and an agentic controller — across 20 randomized seeds with fault injection across wind disturbance, sensor corruption, and communication degradation. The goal is to isolate how each controller behaves when tracking error comes from a real fault rather than normal lag, and to quantify the performance gap between them with repeatable, measurable results.
 
-## Run batch and generate plots
-python -m src.run_all --config configs/scenario_default.yaml --seeds 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
-
-Outputs:
-- outputs/csv/*.csv
-- outputs/figs/*.png
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![PyBullet](https://img.shields.io/badge/PyBullet-306998?style=flat&logoColor=white)
